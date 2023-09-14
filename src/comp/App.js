@@ -10,15 +10,13 @@ import { useState,useEffect } from 'react';
 function App() {
   const KEY_data = "contacts";
   const [contacts, setContacts] = useState( JSON.parse(localStorage.getItem(KEY_data)) ?? []);
-  // const LOCAL_STORAGE_KEY="contacts";
-  // const [contacts, setContacts] = useState(
-  //   localStorage.getItem(LOCAL_STORAGE_KEY) ?? []
-  // );
 
   const addContactHandler = (contact) => {
     console.log(contact);
     setContacts([...contacts, { id: uuid(), ...contact }]);
   }
+
+  
 
 
 
@@ -49,6 +47,7 @@ function App() {
       <Router>
       <Header  />
       <Routes>
+
       <Route exact path="/add" element={<AddContact  addContactHandler={addContactHandler}/>} />
       <Route exact path="/"       element={<ListContact contacts={contacts} removeContactHandler={removeContactHandler} />}
       />
